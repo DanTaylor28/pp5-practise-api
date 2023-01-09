@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import signals
+from django.dispatch import receiver
 
 
 class Profile(models.Model):
@@ -18,3 +20,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.owner}'s profile | Last updated: {self.updated_at}"
+
+
+# deffo use this code in your project! Links user to profile
+# ie creates a new profile for any new user created
+@receiver(signals.post_save, sender=User)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(owner=instance)
