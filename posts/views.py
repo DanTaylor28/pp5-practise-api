@@ -7,7 +7,7 @@ from drf_api.permissions import IsPostOwnerOrReadOnly
 
 class PostList(generics.ListCreateAPIView):
     serializer_class = PostSerializer
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-uploaded_at')
 
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
