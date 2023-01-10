@@ -20,6 +20,7 @@ from .views import home_route
 urlpatterns = [
     path('', home_route),
     path('admin/', admin.site.urls),
+    # ability to login and out on api view
     path('api-auth/', include('rest_framework.urls')),
     path('', include('profiles.urls')),
     path('', include('posts.urls')),

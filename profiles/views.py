@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Profile
 from .serializers import ProfileSerializer
 from rest_framework import generics
+from drf_api.permissions import IsPostOwnerOrReadOnly
 
 
 class ProfileList(generics.ListAPIView):
@@ -11,4 +12,5 @@ class ProfileList(generics.ListAPIView):
 
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProfileSerializer
+    permission_classes = [IsPostOwnerOrReadOnly]
     queryset = Profile.objects.all()
