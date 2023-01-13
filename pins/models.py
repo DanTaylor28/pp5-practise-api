@@ -11,6 +11,8 @@ class Pin(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        # ensures a user cannot like the same post twice
+        unique_together = ['owner', 'post']
 
     def __str__(self):
         return f"{self.post} liked by {self.owner}"
