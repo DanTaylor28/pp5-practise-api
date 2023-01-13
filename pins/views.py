@@ -11,3 +11,9 @@ class PinList(generics.ListCreateAPIView):
 
     # def perform_create(self, serializer):
     #     serializer.save(owner=self.request.user)
+
+
+class PinDetail(generics.RetrieveDestroyAPIView):
+    serializer_class = PinSerializer
+    permission_classes = [IsPostOwnerOrReadOnly]
+    queryset = Pin.objects.all()
