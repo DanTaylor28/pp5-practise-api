@@ -8,11 +8,12 @@ class PinSerializer(serializers.ModelSerializer):
     # displays owners name rather than an integer and automatically fills
     # owner field for us on form to like posts
     owner = serializers.ReadOnlyField(source='owner.username')
+    post_title = serializers.ReadOnlyField(source='post.title')
 
     class Meta:
         model = Pin
         fields = [
-            'id', 'owner', 'post',
+            'id', 'owner', 'post', 'post_title',
             'created_at'
         ]
 
