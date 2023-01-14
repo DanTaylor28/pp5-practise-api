@@ -9,8 +9,9 @@ class PinList(generics.ListCreateAPIView):
     serializer_class = PinSerializer
     queryset = Pin.objects.all().order_by('-created_at')
 
-    # def perform_create(self, serializer):
-    #     serializer.save(owner=self.request.user)
+    # cannot like posts without this function
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class PinDetail(generics.RetrieveDestroyAPIView):
