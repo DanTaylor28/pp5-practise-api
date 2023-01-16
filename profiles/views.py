@@ -7,7 +7,7 @@ from drf_api.permissions import IsPostOwnerOrReadOnly
 
 class ProfileList(generics.ListAPIView):
     serializer_class = ProfileSerializer
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.all().order_by('-created_at')
 
 
 class ProfileDetail(generics.RetrieveUpdateDestroyAPIView):
