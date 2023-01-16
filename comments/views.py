@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Comment
-from .serializers import CommentSerializer
+from .serializers import CommentSerializer, CommentDetailSerializer
 from rest_framework import generics, permissions
 from drf_api.permissions import IsPostOwnerOrReadOnly
 
@@ -16,6 +16,6 @@ class CommentList(generics.ListCreateAPIView):
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = CommentSerializer
+    serializer_class = CommentDetailSerializer
     permission_classes = [IsPostOwnerOrReadOnly]
     queryset = Comment.objects.all()

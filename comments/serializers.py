@@ -22,3 +22,9 @@ class CommentSerializer(serializers.ModelSerializer):
             'is_comment_owner', 'uploaded_at', 'updated_at',
             'profile_id', 'profile_image'
         ]
+
+
+class CommentDetailSerializer(CommentSerializer):
+    # this serializer is necessary just so you dont have to
+    # reselect the post when editing any comments
+    post = serializers.ReadOnlyField(source='post.id')
