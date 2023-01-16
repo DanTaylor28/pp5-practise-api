@@ -13,3 +13,9 @@ class FollowerList(generics.ListCreateAPIView):
     # It recognises the currently logged in user as the 'Owner' i think..
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class FollowerDetail(generics.RetrieveDestroyAPIView):
+    serializer_class = FollowerSerializer
+    permission_classes = [IsPostOwnerOrReadOnly]
+    queryset = Follower.objects.all().order_by('-created_at')
