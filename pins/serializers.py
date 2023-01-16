@@ -24,5 +24,5 @@ class PinSerializer(serializers.ModelSerializer):
             return super().create(validated_data)
         except IntegrityError:
             raise serializers.ValidationError({
-                'error': 'you cannot like a post more than once'
+                'error': 'you cannot pin a post more than once'
             })

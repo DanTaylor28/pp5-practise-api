@@ -14,4 +14,4 @@ class Comment(models.Model):
         ordering = ['-uploaded_at']
 
     def __str__(self):
-        return f"{self.owner} {self.comment}"
+        return f"{self.owner} wrote: {self.text}"
