@@ -8,6 +8,7 @@ class PostSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(
         source='owner.profile.profile_image.url')
     is_post_owner = serializers.SerializerMethodField()
+    category_name = serializers.ReadOnlyField(source='category.name')
 
     def get_is_post_owner(self, obj):
         request = self.context['request']
@@ -17,6 +18,6 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
         fields = [
             'id', 'title', 'caption', 'owner', 'is_post_owner',
-            'uploaded_at', 'updated_at', 'image',
-            'profile_id', 'profile_image'
+            'category', 'category_name', 'uploaded_at', 'updated_at',
+            'image', 'profile_id', 'profile_image'
         ]
