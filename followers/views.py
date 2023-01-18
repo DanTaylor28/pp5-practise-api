@@ -18,4 +18,4 @@ class FollowerList(generics.ListCreateAPIView):
 class FollowerDetail(generics.RetrieveDestroyAPIView):
     serializer_class = FollowerSerializer
     permission_classes = [IsPostOwnerOrReadOnly]
-    queryset = Follower.objects.all().order_by('-created_at')
+    queryset = Follower.objects.all()

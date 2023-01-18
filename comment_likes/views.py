@@ -9,7 +9,7 @@ class CommentLikeList(generics.ListCreateAPIView):
     serializer_class = CommentLikeSerializer
     queryset = CommentLike.objects.all().order_by('-created_at')
 
-    # cannot like posts without this function
+    # cannot like comments without this function
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 

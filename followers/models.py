@@ -9,6 +9,7 @@ class Follower(models.Model):
         User, on_delete=models.CASCADE, related_name='following')
     followed = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='followed')
+    # use timestamp instead
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

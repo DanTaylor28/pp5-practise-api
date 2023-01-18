@@ -18,4 +18,6 @@ class CategoryList(generics.ListCreateAPIView):
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CategorySerializer
     permission_classes = [IsAdminOrReadOnly]
-    queryset = Category.objects.all()
+    queryset = Category.objects.annotate(
+        num_of_posts=Count('post', distinct=True)
+    )
